@@ -1,0 +1,14 @@
+{
+    "userid": "djboulia",
+    "password": "tig1ger",
+    "time": "9:00 AM 11/5/2017",
+    "courses": [
+        "Highlands", "Meadows", "Fairways"
+    ],
+    "golfers": [
+        { "name" : "Donald Boulia", "id" : "593198" },
+        { "name" : "Kirsten Boulia", "id" : "596924" },
+        { "name" : "Lauren Boulia", "id" : "596926" },
+        { "name" : "Ryder Boulia", "id" : "596927" }
+    ]
+}

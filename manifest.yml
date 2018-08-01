@@ -1,0 +1,9 @@
+applications:
+- name: teetime-pwcc
+  timeout: 180
+  instances: 1
+  path: ./target/teetimepwcc.zip
+  memory: 512M
+  buildpack: liberty-for-java
+  host: teetime-pwcc
+  domain: mybluemix.net
