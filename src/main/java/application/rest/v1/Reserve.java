@@ -10,12 +10,34 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.ibm.json.java.JSONObject;
+
 import teetime.TeeTime;
+import teetime.CoursePreferences;
+import teetime.TimeSlot;
 import application.data.Reservation;
 
 @Path("v1/teetime/reserve")
 public class Reserve {
 
+	public static JSONObject JsonTimeSlot(TimeSlot ts) {
+		
+		// put the results in a JSON array for return to the client
+		JSONObject result = new JSONObject();
+
+		if ( ts != null ) {
+			System.out.println("Found time slot:");
+			System.out.println(ts.toString());
+			
+			result.put("time", ts.getTime().toString());
+			result.put("course", CoursePreferences.toString(ts.getCourse()));
+		} else {
+			System.out.println("No members found!");
+		}
+
+		return result;
+	}
+	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
@@ -38,8 +60,11 @@ public class Reserve {
 			String response = "";
 
 			if (result) {
-				if (session.reserve(theDate, res.getGolfers()) != null) {
-					response = "{\"status\":\"Success!\"}";
+				
+				TimeSlot ts = session.reserve(theDate, res.getGolfers());
+				if (ts != null) {
+					JSONObject jsonResult = JsonTimeSlot(ts);
+					response = jsonResult.serialize();
 				} else {
 					response = "{\"status\":\"Login successful but reservation failed!\"}";
 				}
