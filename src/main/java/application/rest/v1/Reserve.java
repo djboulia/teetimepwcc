@@ -66,7 +66,7 @@ public class Reserve {
 					JSONObject jsonResult = JsonTimeSlot(ts);
 					response = jsonResult.serialize();
 				} else {
-					response = "{\"status\":\"Login successful but reservation failed!\"}";
+					response = session.getErrorMessage();
 				}
 			} else {
 				response = "{\"status\":\"Failed to log in!\"}";

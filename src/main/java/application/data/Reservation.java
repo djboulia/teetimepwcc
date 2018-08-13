@@ -66,6 +66,18 @@ public class Reservation {
 		
 		return courses;
 	}
+	
+	// 
+	// Numbers in particular can come in via JSON as either a Number object
+	// or a String.  We coerce whatever is parsed into a String for consistency
+	//
+	private static String parseAsString(Object obj) {
+		if (obj==null) {
+			return null;
+		}
+		
+		return obj.toString();
+	}
 
 	/**
 	 * 	parse a JSON array of golfers.  each golfer has a format like this:
@@ -81,8 +93,10 @@ public class Reservation {
 		
 		for (int i=0; i<jsonGolfers.size(); i++) {
 			JSONObject jsonGolfer = (JSONObject)jsonGolfers.get(i);
+			String name =  (String)jsonGolfer.get("name");
+			String id = parseAsString(jsonGolfer.get("id"));
 			
-			Golfer golfer = new Golfer( (String)jsonGolfer.get("name"), (String)jsonGolfer.get("id"));
+			Golfer golfer = new Golfer(name, id);
 			System.out.println("Found Golfer " + golfer.toString());
 
 			golfers.add(golfer);
