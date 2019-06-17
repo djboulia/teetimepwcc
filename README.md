@@ -1,4 +1,12 @@
 ## Microservice
+
+**NOTE:** 
+
+This project is now defunct.  The micro-service was re-written in Node when the
+back end tee time system was re-vamped.  That project is here: https://github.com/djboulia/teetimepwccjs
+
+**NOTE:** 
+
 Bluemix Microservice Starter in Java
 
 [![](https://img.shields.io/badge/bluemix-powered-blue.svg)](https://bluemix.net)
